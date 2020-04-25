@@ -22,6 +22,8 @@ public class ListaActivity extends AppCompatActivity {
 
     private ImageButton del;
     private ImageButton btnwassap;
+    private Bundle b;
+    private String comprawassap;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,12 +35,13 @@ public class ListaActivity extends AppCompatActivity {
         TextView descripcion = (TextView) findViewById(R.id.tvCompra);
 
         Intent intent = getIntent();
-        final Bundle b = intent.getExtras();
+        Bundle b = intent.getExtras();
 
         if(b!=null) {
             nombreCompra.setText(b.getString("NOM"));
             fecha.setText(b.getString("FEC"));
             descripcion.setText(b.getString("DESC"));
+            final String comprawassaap = b.getString("DESC");
         }
 
         del = (ImageButton) findViewById(R.id.btnDel);
@@ -56,18 +59,7 @@ public class ListaActivity extends AppCompatActivity {
         btnwassap.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(Intent.ACTION_SEND);
-                intent.setType("text/plain");
-                intent.setPackage("com.whatsapp");
-                intent.putExtra(Intent.EXTRA_TEXT, b.getString("DESC"));
-
-                try {
-                    startActivity(intent);
-                } catch (android.content.ActivityNotFoundException ex) {
-                    ex.printStackTrace();
-
-                    Toast.makeText(ListaActivity.this, "El dispositivo no tiene WHATSAPP instalado", Toast.LENGTH_SHORT).show();
-                }
+                createCustomDialogwassap().show();
             }
         });
 
@@ -96,6 +88,45 @@ public class ListaActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Toast.makeText(ListaActivity.this, "Borraar lista de la compra", Toast.LENGTH_SHORT).show();
                 alertDialog.dismiss();
+            }
+        });
+
+        return alertDialog;
+    }
+
+    public AlertDialog createCustomDialogwassap(){
+        final AlertDialog alertDialog;
+        final AlertDialog.Builder builder = new AlertDialog.Builder(ListaActivity.this);
+        LayoutInflater inflater = getLayoutInflater();
+
+        View v = inflater.inflate(R.layout.dialog_share, null);
+        ImageButton btnCorreo = (ImageButton) v.findViewById(R.id.AlertDialog_correo);
+        ImageButton btnWaassap = (ImageButton) v.findViewById(R.id.AlertDialog_wassap);
+        builder.setView(v);
+        alertDialog = builder.create();
+
+        btnCorreo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                alertDialog.dismiss();
+            }
+        });
+
+        btnWaassap.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Intent.ACTION_SEND);
+                intent.setType("text/plain");
+                intent.setPackage("com.whatsapp");
+                intent.putExtra(Intent.EXTRA_TEXT, comprawassap);
+
+                try {
+                    startActivity(intent);
+                } catch (android.content.ActivityNotFoundException ex) {
+                    ex.printStackTrace();
+
+                    Toast.makeText(ListaActivity.this, "El dispositivo no tiene WHATSAPP instalado", Toast.LENGTH_SHORT).show();
+                }
             }
         });
 
