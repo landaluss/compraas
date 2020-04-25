@@ -33,7 +33,7 @@ public class ListaActivity extends AppCompatActivity {
         TextView descripcion = (TextView) findViewById(R.id.tvCompra);
 
         Intent intent = getIntent();
-        Bundle b = intent.getExtras();
+        final Bundle b = intent.getExtras();
 
         if(b!=null) {
             nombreCompra.setText(b.getString("NOM"));
@@ -59,7 +59,7 @@ public class ListaActivity extends AppCompatActivity {
                 Intent intent = new Intent(Intent.ACTION_SEND);
                 intent.setType("text/plain");
                 intent.setPackage("com.whatsapp");
-                intent.putExtra(Intent.EXTRA_TEXT, "Prueba de mandar lista de compra - whatsapp");
+                intent.putExtra(Intent.EXTRA_TEXT, b.getString("DESC"));
 
                 try {
                     startActivity(intent);
