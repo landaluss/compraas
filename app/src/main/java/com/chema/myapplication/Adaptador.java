@@ -17,7 +17,7 @@ public class Adaptador extends BaseAdapter implements Filterable {
 
     private Context context;
     private ArrayList<Entidad> listItems;
-    private List<String> listFiltered = new ArrayList<String>();
+    private ArrayList<Entidad> listFiltered = new ArrayList<Entidad>();
 
     public Adaptador(Context context, ArrayList<Entidad> listItems) {
         this.context = context;
@@ -66,11 +66,11 @@ public class Adaptador extends BaseAdapter implements Filterable {
                     results.count = listItems.size();
                     results.values = listItems;
                 } else {//do the search
-                    List<String> resultsData = new ArrayList<>();
+                    List<Entidad> resultsData = new ArrayList<>();
                     String searchStr = constraint.toString().toUpperCase();
 
                     for (Entidad s : listItems)
-                        if (s.getNombreCompra().toUpperCase().contains(searchStr)) resultsData.add(s.getNombreCompra());
+                        if (s.getNombreCompra().toUpperCase().contains(searchStr)) resultsData.add(s);
                     results.count = resultsData.size();
                     results.values = resultsData;
                 }
@@ -80,7 +80,9 @@ public class Adaptador extends BaseAdapter implements Filterable {
 
             @Override
             protected void publishResults(CharSequence constraint, FilterResults results) {
-                listFiltered = (ArrayList<String>) results.values;
+                listFiltered = (ArrayList<Entidad>) results.values;
+                listItems.clear();
+                listItems = listFiltered;
                 notifyDataSetChanged();
             }
         };
