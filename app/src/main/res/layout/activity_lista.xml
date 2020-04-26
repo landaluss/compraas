@@ -18,9 +18,11 @@
         android:background="#da4958">
 
         <LinearLayout
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
+            android:layout_weight="1"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:gravity="left">
 
             <ImageView
                 android:layout_width="wrap_content"
@@ -32,6 +34,22 @@
                 android:layout_height="23dp"
                 android:paddingLeft="7dp"
                 android:src="@drawable/letras_shopping_list"/>
+
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="right">
+
+            <ImageButton
+                android:id="@+id/btnShare"
+                android:paddingLeft="20dp"
+                android:background="#da4958"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_icon_share"/>
 
         </LinearLayout>
 
@@ -146,14 +164,6 @@ If the content scrolls, everything is fine. However, if the content is smaller t
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:src="@drawable/ic_icon_edit"/>
-
-            <ImageButton
-                android:id="@+id/btnwassap"
-                android:paddingLeft="20dp"
-                android:background="#933b49"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/ic_icon_whatsapp"/>
 
             <ImageButton
                 android:id="@+id/btnDel"

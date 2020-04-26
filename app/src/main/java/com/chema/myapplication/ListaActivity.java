@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.provider.Settings;
 import android.util.Log;
@@ -21,9 +22,8 @@ import com.google.android.material.snackbar.Snackbar;
 public class ListaActivity extends AppCompatActivity {
 
     private ImageButton del;
-    private ImageButton btnwassap;
+    private ImageButton btnShare;
     private Bundle b;
-    private String comprawassap;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,17 +35,16 @@ public class ListaActivity extends AppCompatActivity {
         TextView descripcion = (TextView) findViewById(R.id.tvCompra);
 
         Intent intent = getIntent();
-        Bundle b = intent.getExtras();
+        b = intent.getExtras();
 
         if(b!=null) {
             nombreCompra.setText(b.getString("NOM"));
             fecha.setText(b.getString("FEC"));
             descripcion.setText(b.getString("DESC"));
-            final String comprawassaap = b.getString("DESC");
         }
 
         del = (ImageButton) findViewById(R.id.btnDel);
-        btnwassap = (ImageButton) findViewById(R.id.btnwassap);
+        btnShare = (ImageButton) findViewById(R.id.btnShare);
 
         //Al hacer clic en borrar
         del.setOnClickListener(new View.OnClickListener() {
@@ -56,7 +55,7 @@ public class ListaActivity extends AppCompatActivity {
         });
 
         //Al hacer clic en whatsapp
-        btnwassap.setOnClickListener(new View.OnClickListener() {
+        btnShare.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 createCustomDialogwassap().show();
@@ -86,7 +85,7 @@ public class ListaActivity extends AppCompatActivity {
         btnCancel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(ListaActivity.this, "Borraar lista de la compra", Toast.LENGTH_SHORT).show();
+                Toast.makeText(ListaActivity.this, "Borrar lista de la compra", Toast.LENGTH_SHORT).show();
                 alertDialog.dismiss();
             }
         });
@@ -108,7 +107,12 @@ public class ListaActivity extends AppCompatActivity {
         btnCorreo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                alertDialog.dismiss();
+                Intent intentmail = new Intent(Intent.ACTION_VIEW , Uri.parse(""));
+                intentmail.setType("plain/text");
+                intentmail.putExtra(Intent.EXTRA_SUBJECT , "Lista de la compa: " + b.getString("NOM"));
+                intentmail.putExtra(Intent.EXTRA_TEXT ,  b.getString("DESC"));
+                startActivity(intentmail);
+
             }
         });
 
@@ -118,7 +122,7 @@ public class ListaActivity extends AppCompatActivity {
                 Intent intent = new Intent(Intent.ACTION_SEND);
                 intent.setType("text/plain");
                 intent.setPackage("com.whatsapp");
-                intent.putExtra(Intent.EXTRA_TEXT, comprawassap);
+                intent.putExtra(Intent.EXTRA_TEXT, b.getString("DESC"));
 
                 try {
                     startActivity(intent);
