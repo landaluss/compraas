@@ -6,7 +6,9 @@
     android:layout_height="match_parent"
     android:background="@drawable/degradado"
     android:padding="30dp"
-    tools:context=".MainActivity">
+    tools:context=".MainActivity"
+    android:focusable="true"
+    android:focusableInTouchMode="true">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -50,7 +52,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/rounded"
-            android:focusable="true"
             android:hint="Username"
             android:inputType="text"
             android:drawablePadding="10dp"
@@ -75,7 +76,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/rounded"
-            android:focusable="true"
             android:hint="Password"
             android:inputType="textPassword"
             android:drawablePadding="10dp"

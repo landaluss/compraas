@@ -107,8 +107,8 @@ public class ListaActivity extends AppCompatActivity {
         btnCorreo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intentmail = new Intent(Intent.ACTION_VIEW , Uri.parse(""));
-                intentmail.setType("plain/text");
+                Intent intentmail = new Intent(Intent.ACTION_SEND);
+                intentmail.setType("text/plain");
                 intentmail.putExtra(Intent.EXTRA_SUBJECT , "Lista de la compa: " + b.getString("NOM"));
                 intentmail.putExtra(Intent.EXTRA_TEXT ,  b.getString("DESC"));
                 startActivity(intentmail);
