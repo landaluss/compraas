@@ -58,7 +58,7 @@ public class PrincipalActivity extends AppCompatActivity {
 
         lista = findViewById(R.id.lvLista);
         final ArrayList<Entidad> gItems = GetArrayItems();
-        adaptador = new Adaptador(this , gItems);
+        adaptador = new Adaptador(this , gItems , gItems);
         lista.setAdapter(adaptador);
 
         lista.setOnItemClickListener(new AdapterView.OnItemClickListener() {

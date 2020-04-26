@@ -17,26 +17,27 @@ public class Adaptador extends BaseAdapter implements Filterable {
 
     private Context context;
     private ArrayList<Entidad> listItems;
-    private ArrayList<Entidad> listFiltered = new ArrayList<Entidad>();
+    private ArrayList<Entidad> listFiltered;
 
-    public Adaptador(Context context, ArrayList<Entidad> listItems) {
+    public Adaptador(Context context, ArrayList<Entidad> listItems , ArrayList<Entidad> listFiltered) {
         this.context = context;
         this.listItems = listItems;
+        this.listFiltered = listItems;
     }
 
     @Override
     public int getCount() {
-        return listItems.size();
+        return listFiltered.size();
     }
 
     @Override
     public Object getItem(int position) {
-        return listItems.get(position);
+        return listFiltered.get(position);
     }
 
     @Override
     public long getItemId(int position) {
-        return 0;
+        return position;
     }
 
     @Override
@@ -65,6 +66,7 @@ public class Adaptador extends BaseAdapter implements Filterable {
                     //no constraint given, just return all the data. (no search)
                     results.count = listItems.size();
                     results.values = listItems;
+
                 } else {//do the search
                     List<Entidad> resultsData = new ArrayList<>();
                     String searchStr = constraint.toString().toUpperCase();
@@ -81,8 +83,6 @@ public class Adaptador extends BaseAdapter implements Filterable {
             @Override
             protected void publishResults(CharSequence constraint, FilterResults results) {
                 listFiltered = (ArrayList<Entidad>) results.values;
-                listItems.clear();
-                listItems = listFiltered;
                 notifyDataSetChanged();
             }
         };
