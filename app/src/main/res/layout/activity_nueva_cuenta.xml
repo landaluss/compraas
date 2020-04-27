@@ -9,213 +9,230 @@
     tools:context=".MainActivity"
     android:focusable="true"
     android:focusableInTouchMode="true"
-    android:scrollbars="vertical">
+    android:fitsSystemWindows="true">
 
-    <LinearLayout
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="10dp"
-        android:gravity="center"
-        android:id="@+id/rlLogo">
+        android:layout_gravity="center_vertical"
+        android:fillViewport="true">
 
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/ic_icon_small"/>
-
-        <ImageView
-            android:layout_width="90dp"
-            android:layout_height="23dp"
-            android:paddingLeft="7dp"
-            android:src="@drawable/letras_shopping_list"/>
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:id="@+id/iconAccount"
-        android:paddingTop="50dp"
-        android:layout_below="@+id/rlLogo">
-
-        <ImageView
-            android:layout_width="100dp"
-            android:layout_height="100dp"
-            android:src="@mipmap/ic_account"
-            android:scaleType="fitXY"/>
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_below="@+id/iconAccount"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/rlNombre"
-        android:paddingLeft="20dp"
-        android:paddingRight="20dp"
-        android:paddingTop="20dp">
-
-        <EditText
-            android:id="@+id/EtNombre"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@drawable/rounded"
-            android:hint="Nombre"
-            android:inputType="text"
-            android:drawablePadding="10dp"
-            android:padding="10dp"
-            android:shadowRadius="20"
-            android:textColor="#933b49"
-            android:textColorHint="#933b49"
-            android:textAlignment="center"
-            android:textSize="25dp" />
+            android:orientation="vertical"
+            android:layout_gravity="center_horizontal">
 
-    </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="10dp"
+                android:gravity="center"
+                android:id="@+id/rlLogo">
 
-    <LinearLayout
-        android:layout_below="@+id/rlNombre"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/rlApellidos"
-        android:paddingLeft="20dp"
-        android:paddingRight="20dp"
-        android:paddingTop="10dp">
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_icon_small"/>
 
-        <EditText
-            android:id="@+id/apellidos"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@drawable/rounded"
-            android:hint="Apellidos"
-            android:inputType="text"
-            android:drawablePadding="10dp"
-            android:padding="10dp"
-            android:shadowRadius="20"
-            android:textColor="#933b49"
-            android:textColorHint="#933b49"
-            android:textAlignment="center"
-            android:textSize="25dp" />
+                <ImageView
+                    android:layout_width="90dp"
+                    android:layout_height="23dp"
+                    android:paddingLeft="7dp"
+                    android:src="@drawable/letras_shopping_list"/>
 
-    </LinearLayout>
+            </LinearLayout>
 
-    <LinearLayout
-        android:layout_below="@+id/rlApellidos"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/rlCorreo"
-        android:paddingLeft="20dp"
-        android:paddingRight="20dp"
-        android:paddingTop="10dp">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:id="@+id/iconAccount"
+                android:paddingTop="50dp"
+                android:layout_below="@+id/rlLogo">
 
-        <EditText
-            android:id="@+id/EtCorreo"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@drawable/rounded"
-            android:hint="Dirección Correo"
-            android:inputType="textEmailAddress"
-            android:drawablePadding="10dp"
-            android:padding="10dp"
-            android:shadowRadius="20"
-            android:textColor="#933b49"
-            android:textColorHint="#933b49"
-            android:textAlignment="center"
-            android:textSize="25dp" />
+                <ImageView
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:src="@mipmap/ic_account"
+                    android:scaleType="fitXY"/>
 
-    </LinearLayout>
+            </LinearLayout>
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:id="@+id/separator"
-        android:layout_below="@+id/rlCorreo"
-        android:gravity="center"
-        android:orientation="horizontal"
-        android:paddingLeft="20dp"
-        android:paddingRight="20dp"
-        android:paddingTop="20dp">
+            <LinearLayout
+                android:layout_below="@+id/iconAccount"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/rlNombre"
+                android:paddingLeft="20dp"
+                android:paddingRight="20dp"
+                android:paddingTop="20dp">
 
-        <View
-            android:layout_width="240dp"
-            android:layout_height="1dp"
-            android:background="@android:color/darker_gray"/>
+                <EditText
+                    android:id="@+id/EtNombre"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/rounded"
+                    android:hint="Nombre"
+                    android:inputType="text"
+                    android:drawablePadding="10dp"
+                    android:padding="10dp"
+                    android:shadowRadius="20"
+                    android:textColor="#933b49"
+                    android:textColorHint="#933b49"
+                    android:textAlignment="center"
+                    android:textSize="25dp" />
 
-    </LinearLayout>
+            </LinearLayout>
 
-    <LinearLayout
-        android:layout_below="@+id/separator"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/rlUsername"
-        android:paddingLeft="20dp"
-        android:paddingRight="20dp"
-        android:paddingTop="20dp">
+            <LinearLayout
+                android:layout_below="@+id/rlNombre"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/rlApellidos"
+                android:paddingLeft="20dp"
+                android:paddingRight="20dp"
+                android:paddingTop="10dp">
 
-        <EditText
-            android:id="@+id/EtUsername"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@drawable/rounded"
-            android:hint="Nombre Usuario"
-            android:inputType="text"
-            android:drawablePadding="10dp"
-            android:padding="10dp"
-            android:shadowRadius="20"
-            android:textColor="#933b49"
-            android:textColorHint="#933b49"
-            android:textAlignment="center"
-            android:textSize="25dp" />
+                <EditText
+                    android:id="@+id/EtAApellidos"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/rounded"
+                    android:hint="Apellidos"
+                    android:inputType="text"
+                    android:drawablePadding="10dp"
+                    android:padding="10dp"
+                    android:shadowRadius="20"
+                    android:textColor="#933b49"
+                    android:textColorHint="#933b49"
+                    android:textAlignment="center"
+                    android:textSize="25dp" />
 
-    </LinearLayout>
+            </LinearLayout>
 
-    <LinearLayout
-        android:layout_below="@+id/rlUsername"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/rlPassword"
-        android:paddingLeft="20dp"
-        android:paddingRight="20dp"
-        android:paddingTop="10dp">
+            <LinearLayout
+                android:layout_below="@+id/rlApellidos"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/rlCorreo"
+                android:paddingLeft="20dp"
+                android:paddingRight="20dp"
+                android:paddingTop="10dp">
 
-        <EditText
-            android:id="@+id/EtPassword"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@drawable/rounded"
-            android:hint="Contraseña"
-            android:inputType="textPassword"
-            android:drawablePadding="10dp"
-            android:padding="10dp"
-            android:shadowRadius="20"
-            android:textColor="#933b49"
-            android:textColorHint="#933b49"
-            android:textAlignment="center"
-            android:textSize="25dp" />
+                <EditText
+                    android:id="@+id/EtCorreo"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/rounded"
+                    android:hint="Dirección Correo"
+                    android:inputType="textEmailAddress"
+                    android:drawablePadding="10dp"
+                    android:padding="10dp"
+                    android:shadowRadius="20"
+                    android:textColor="#933b49"
+                    android:textColorHint="#933b49"
+                    android:textAlignment="center"
+                    android:textSize="25dp" />
 
-    </LinearLayout>
+            </LinearLayout>
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:id="@+id/rlBtnNcuenta"
-        android:layout_below="@+id/rlPassword"
-        android:paddingLeft="20dp"
-        android:paddingRight="20dp"
-        android:paddingTop="20dp">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:id="@+id/separator"
+                android:layout_below="@+id/rlCorreo"
+                android:gravity="center"
+                android:orientation="horizontal"
+                android:paddingLeft="20dp"
+                android:paddingRight="20dp"
+                android:paddingTop="20dp">
 
-        <Button
-            android:id="@+id/btnNcuenta"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@drawable/rounded_red"
-            android:textColor="#fff"
-            android:padding="12dp"
-            android:text="Registrarse"
-            android:textSize="20dp"/>
+                <View
+                    android:layout_width="240dp"
+                    android:layout_height="1dp"
+                    android:background="@android:color/darker_gray"/>
 
-    </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_below="@+id/separator"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/rlUsername"
+                android:paddingLeft="20dp"
+                android:paddingRight="20dp"
+                android:paddingTop="20dp">
+
+                <EditText
+                    android:id="@+id/EtUsername"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/rounded"
+                    android:hint="Nombre Usuario"
+                    android:inputType="text"
+                    android:drawablePadding="10dp"
+                    android:padding="10dp"
+                    android:shadowRadius="20"
+                    android:textColor="#933b49"
+                    android:textColorHint="#933b49"
+                    android:textAlignment="center"
+                    android:textSize="25dp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_below="@+id/rlUsername"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/rlPassword"
+                android:paddingLeft="20dp"
+                android:paddingRight="20dp"
+                android:paddingTop="10dp">
+
+                <EditText
+                    android:id="@+id/EtPassword"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/rounded"
+                    android:hint="Contraseña"
+                    android:focusable="true"
+                    android:inputType="textPassword"
+                    android:drawablePadding="10dp"
+                    android:padding="10dp"
+                    android:shadowRadius="20"
+                    android:textColor="#933b49"
+                    android:textColorHint="#933b49"
+                    android:textAlignment="center"
+                    android:textSize="25dp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:id="@+id/rlBtnNcuenta"
+                android:layout_below="@+id/rlPassword"
+                android:paddingLeft="20dp"
+                android:paddingRight="20dp"
+                android:paddingTop="20dp">
+
+                <Button
+                    android:id="@+id/btnNcuenta"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/rounded_red"
+                    android:textColor="#fff"
+                    android:padding="12dp"
+                    android:text="Registrarse"
+                    android:textSize="20dp"/>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </ScrollView>
 
 </RelativeLayout>

@@ -9,202 +9,218 @@
     tools:context=".MainActivity"
     android:focusable="true"
     android:focusableInTouchMode="true"
-    android:scrollbars="vertical">
+    android:fitsSystemWindows="true">
 
-    <LinearLayout
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="10dp"
-        android:gravity="center"
-        android:id="@+id/rlLogo">
+        android:layout_gravity="center_vertical"
+        android:fillViewport="true">
 
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/ic_icon_small"/>
-
-        <ImageView
-            android:layout_width="90dp"
-            android:layout_height="23dp"
-            android:paddingLeft="7dp"
-            android:src="@drawable/letras_shopping_list"/>
-
-    </LinearLayout>
-
-    <LinearLayout
+        <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:gravity="center"
-        android:id="@+id/iconAccount"
-        android:paddingTop="50dp"
-        android:layout_below="@+id/rlLogo">
+        android:orientation="vertical"
+        android:layout_gravity="center_horizontal">
 
-        <ImageView
-            android:layout_width="100dp"
-            android:layout_height="100dp"
-            android:src="@mipmap/ic_account"
-            android:scaleType="fitXY"/>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="10dp"
+                android:gravity="center"
+                android:id="@+id/rlLogo">
 
-    </LinearLayout>
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_icon_small"/>
 
-    <LinearLayout
-        android:layout_below="@+id/iconAccount"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/rlUsername"
-        android:paddingLeft="20dp"
-        android:paddingRight="20dp"
-        android:paddingTop="20dp">
+                <ImageView
+                    android:layout_width="90dp"
+                    android:layout_height="23dp"
+                    android:paddingLeft="7dp"
+                    android:src="@drawable/letras_shopping_list"/>
 
-        <EditText
-            android:id="@+id/EtNombre"
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:id="@+id/iconAccount"
+                android:paddingTop="50dp"
+                android:layout_below="@+id/rlLogo">
+
+                <ImageView
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:src="@mipmap/ic_account"
+                    android:scaleType="fitXY"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_below="@+id/iconAccount"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/rlUsername"
+                android:paddingLeft="20dp"
+                android:paddingRight="20dp"
+                android:paddingTop="20dp">
+
+                <EditText
+                    android:id="@+id/EtNombre"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/rounded"
+                    android:hint="Nombre Usuario"
+                    android:inputType="text"
+                    android:drawablePadding="10dp"
+                    android:padding="10dp"
+                    android:shadowRadius="20"
+                    android:textColor="#933b49"
+                    android:textColorHint="#933b49"
+                    android:textAlignment="center"
+                    android:textSize="25dp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_below="@+id/rlUsername"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/rlpass"
+                android:paddingLeft="20dp"
+                android:paddingRight="20dp"
+                android:paddingTop="10dp">
+
+                <EditText
+                    android:id="@+id/EtPass"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/rounded"
+                    android:hint="Contraseña"
+                    android:inputType="textPassword"
+                    android:drawablePadding="10dp"
+                    android:padding="10dp"
+                    android:shadowRadius="20"
+                    android:textColor="#933b49"
+                    android:textColorHint="#933b49"
+                    android:textAlignment="center"
+                    android:textSize="25dp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:id="@+id/rlremember"
+                android:layout_below="@+id/rlpass"
+                android:gravity="right"
+                android:paddingLeft="12dp"
+                android:paddingRight="20dp"
+                android:paddingTop="10dp">
+
+                <CheckBox
+                    android:id="@+id/remember"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:checked="false"
+                    android:duplicateParentState="false"
+                    android:text="Recordar"
+                    android:textColor="#fff"
+                    android:buttonTint="#fff"
+                    android:textSize="18dp" />
+
+                <TextView
+                    android:id="@+id/recuperar"
+                    android:clickable="true"
+                    android:layout_width="0dp"
+                    android:gravity="right"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:text="Recuperar Contraseña"
+                    android:textSize="18dp"
+                    android:textColor="#fff"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:id="@+id/rlbtn"
+                android:layout_below="@+id/rlremember"
+                android:paddingLeft="20dp"
+                android:paddingRight="20dp"
+                android:paddingTop="10dp">
+
+                <Button
+                    android:id="@+id/btnLogin"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/rounded_red"
+                    android:textColor="#fff"
+                    android:padding="12dp"
+                    android:text="ENTRAR"
+                    android:textSize="20dp"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:id="@+id/separator"
+                android:layout_below="@+id/rlbtn"
+                android:gravity="center"
+                android:orientation="horizontal"
+                android:paddingLeft="20dp"
+                android:paddingRight="20dp"
+                android:paddingTop="20dp">
+
+                <View
+                    android:layout_width="120dp"
+                    android:layout_height="1dp"
+                    android:background="@android:color/darker_gray"/>
+
+            </LinearLayout>
+
+            <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@drawable/rounded"
-            android:hint="Nombre Usuario"
-            android:inputType="text"
-            android:drawablePadding="10dp"
-            android:padding="10dp"
-            android:shadowRadius="20"
-            android:textColor="#933b49"
-            android:textColorHint="#933b49"
-            android:textAlignment="center"
-            android:textSize="25dp" />
+            android:layout_centerHorizontal="true"
+            android:id="@+id/ncuenta"
+            android:layout_below="@+id/separator"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:paddingLeft="20dp"
+            android:paddingRight="20dp"
+            android:paddingTop="20dp">
 
-    </LinearLayout>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="¿Eres nuevo? "
+                    android:textColor="#fff"
+                    android:textSize="20dp"/>
 
-    <LinearLayout
-        android:layout_below="@+id/rlUsername"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/rlpass"
-        android:paddingLeft="20dp"
-        android:paddingRight="20dp"
-        android:paddingTop="10dp">
+                <TextView
+                    android:id="@+id/btnCuenta"
+                    android:clickable="true"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Regístrate ahora"
+                    android:textColor="#fff"
+                    android:textSize="20dp"
+                    android:textStyle="bold"/>
 
-        <EditText
-            android:id="@+id/EtPass"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@drawable/rounded"
-            android:hint="Contraseña"
-            android:inputType="textPassword"
-            android:drawablePadding="10dp"
-            android:padding="10dp"
-            android:shadowRadius="20"
-            android:textColor="#933b49"
-            android:textColorHint="#933b49"
-            android:textAlignment="center"
-            android:textSize="25dp" />
+            </LinearLayout>
 
-    </LinearLayout>
+        </LinearLayout>
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:id="@+id/rlremember"
-        android:layout_below="@+id/rlpass"
-        android:gravity="right"
-        android:paddingLeft="12dp"
-        android:paddingRight="20dp"
-        android:paddingTop="10dp">
-
-        <CheckBox
-            android:id="@+id/remember"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:checked="false"
-            android:duplicateParentState="false"
-            android:text="Recordar"
-            android:textColor="#fff"
-            android:buttonTint="#fff"
-            android:textSize="18dp" />
-
-        <TextView
-            android:id="@+id/recuperar"
-            android:clickable="true"
-            android:layout_width="0dp"
-            android:gravity="right"
-            android:layout_weight="1"
-            android:layout_height="wrap_content"
-            android:text="Recuperar Contraseña"
-            android:textSize="18dp"
-            android:textColor="#fff"/>
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:id="@+id/rlbtn"
-        android:layout_below="@+id/rlremember"
-        android:paddingLeft="20dp"
-        android:paddingRight="20dp"
-        android:paddingTop="10dp">
-
-        <Button
-            android:id="@+id/btnLogin"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@drawable/rounded_red"
-            android:textColor="#fff"
-            android:padding="12dp"
-            android:text="ENTRAR"
-            android:textSize="20dp"/>
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:id="@+id/separator"
-        android:layout_below="@+id/rlbtn"
-        android:gravity="center"
-        android:orientation="horizontal"
-        android:paddingLeft="20dp"
-        android:paddingRight="20dp"
-        android:paddingTop="20dp">
-
-        <View
-            android:layout_width="120dp"
-            android:layout_height="1dp"
-            android:background="@android:color/darker_gray"/>
-
-    </LinearLayout>
-
-    <LinearLayout
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:layout_centerHorizontal="true"
-    android:id="@+id/ncuenta"
-    android:layout_below="@+id/separator"
-    android:gravity="center"
-    android:orientation="horizontal"
-    android:paddingLeft="20dp"
-    android:paddingRight="20dp"
-    android:paddingTop="20dp">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="¿Eres nuevo? "
-            android:textColor="#fff"
-            android:textSize="20dp"/>
-
-        <TextView
-            android:id="@+id/btnCuenta"
-            android:clickable="true"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Regístrate ahora"
-            android:textColor="#fff"
-            android:textSize="20dp"
-            android:textStyle="bold"/>
-
-    </LinearLayout>
+    </ScrollView>
 
 </RelativeLayout>
