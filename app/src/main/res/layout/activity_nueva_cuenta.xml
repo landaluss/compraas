@@ -51,13 +51,110 @@
         android:layout_below="@+id/iconAccount"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/rlUsername"
+        android:id="@+id/rlNombre"
         android:paddingLeft="20dp"
         android:paddingRight="20dp"
         android:paddingTop="20dp">
 
         <EditText
             android:id="@+id/EtNombre"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/rounded"
+            android:hint="Nombre"
+            android:inputType="text"
+            android:drawablePadding="10dp"
+            android:padding="10dp"
+            android:shadowRadius="20"
+            android:textColor="#933b49"
+            android:textColorHint="#933b49"
+            android:textAlignment="center"
+            android:textSize="25dp" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_below="@+id/rlNombre"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/rlApellidos"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp"
+        android:paddingTop="10dp">
+
+        <EditText
+            android:id="@+id/apellidos"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/rounded"
+            android:hint="Apellidos"
+            android:inputType="text"
+            android:drawablePadding="10dp"
+            android:padding="10dp"
+            android:shadowRadius="20"
+            android:textColor="#933b49"
+            android:textColorHint="#933b49"
+            android:textAlignment="center"
+            android:textSize="25dp" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_below="@+id/rlApellidos"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/rlCorreo"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp"
+        android:paddingTop="10dp">
+
+        <EditText
+            android:id="@+id/EtCorreo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/rounded"
+            android:hint="Dirección Correo"
+            android:inputType="textEmailAddress"
+            android:drawablePadding="10dp"
+            android:padding="10dp"
+            android:shadowRadius="20"
+            android:textColor="#933b49"
+            android:textColorHint="#933b49"
+            android:textAlignment="center"
+            android:textSize="25dp" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:id="@+id/separator"
+        android:layout_below="@+id/rlCorreo"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp"
+        android:paddingTop="20dp">
+
+        <View
+            android:layout_width="240dp"
+            android:layout_height="1dp"
+            android:background="@android:color/darker_gray"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_below="@+id/separator"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/rlUsername"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp"
+        android:paddingTop="20dp">
+
+        <EditText
+            android:id="@+id/EtUsername"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/rounded"
@@ -77,13 +174,13 @@
         android:layout_below="@+id/rlUsername"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/rlpass"
+        android:id="@+id/rlPassword"
         android:paddingLeft="20dp"
         android:paddingRight="20dp"
         android:paddingTop="10dp">
 
         <EditText
-            android:id="@+id/EtPass"
+            android:id="@+id/EtPassword"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/rounded"
@@ -103,107 +200,21 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
-        android:id="@+id/rlremember"
-        android:layout_below="@+id/rlpass"
-        android:gravity="right"
-        android:paddingLeft="12dp"
-        android:paddingRight="20dp"
-        android:paddingTop="10dp">
-
-        <CheckBox
-            android:id="@+id/remember"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:checked="false"
-            android:duplicateParentState="false"
-            android:text="Recordar"
-            android:textColor="#fff"
-            android:buttonTint="#fff"
-            android:textSize="18dp" />
-
-        <TextView
-            android:id="@+id/recuperar"
-            android:clickable="true"
-            android:layout_width="0dp"
-            android:gravity="right"
-            android:layout_weight="1"
-            android:layout_height="wrap_content"
-            android:text="Recuperar Contraseña"
-            android:textSize="18dp"
-            android:textColor="#fff"/>
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:id="@+id/rlbtn"
-        android:layout_below="@+id/rlremember"
+        android:id="@+id/rlBtnNcuenta"
+        android:layout_below="@+id/rlPassword"
         android:paddingLeft="20dp"
         android:paddingRight="20dp"
-        android:paddingTop="10dp">
+        android:paddingTop="20dp">
 
         <Button
-            android:id="@+id/btnLogin"
+            android:id="@+id/btnNcuenta"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/rounded_red"
             android:textColor="#fff"
             android:padding="12dp"
-            android:text="ENTRAR"
+            android:text="Registrarse"
             android:textSize="20dp"/>
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:id="@+id/separator"
-        android:layout_below="@+id/rlbtn"
-        android:gravity="center"
-        android:orientation="horizontal"
-        android:paddingLeft="20dp"
-        android:paddingRight="20dp"
-        android:paddingTop="20dp">
-
-        <View
-            android:layout_width="120dp"
-            android:layout_height="1dp"
-            android:background="@android:color/darker_gray"/>
-
-    </LinearLayout>
-
-    <LinearLayout
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:layout_centerHorizontal="true"
-    android:id="@+id/ncuenta"
-    android:layout_below="@+id/separator"
-    android:gravity="center"
-    android:orientation="horizontal"
-    android:paddingLeft="20dp"
-    android:paddingRight="20dp"
-    android:paddingTop="20dp">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="¿Eres nuevo? "
-            android:textColor="#fff"
-            android:textSize="20dp"/>
-
-        <TextView
-            android:id="@+id/btnCuenta"
-            android:clickable="true"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Regístrate ahora"
-            android:textColor="#fff"
-            android:textSize="20dp"
-            android:textStyle="bold"/>
 
     </LinearLayout>
 

@@ -4,11 +4,13 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 import android.widget.EditText;
 import android.widget.ImageButton;
@@ -48,6 +50,16 @@ public class PrincipalActivity extends AppCompatActivity {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 adaptador.getFilter().filter(s);
+
+                if(s.length()==0){
+                   //esconder teclado
+                    InputMethodManager inputMethodManager = (InputMethodManager)getSystemService(PrincipalActivity.this.INPUT_METHOD_SERVICE);
+                    inputMethodManager.hideSoftInputFromWindow(search.getWindowToken(), 0);
+                } else {
+                    InputMethodManager inputMethodManager = (InputMethodManager)getSystemService(PrincipalActivity.this.INPUT_METHOD_SERVICE);
+                    inputMethodManager.hideSoftInputFromWindow(search.getWindowToken(), 1);
+                }
+
             }
 
             @Override
@@ -58,7 +70,7 @@ public class PrincipalActivity extends AppCompatActivity {
 
         lista = findViewById(R.id.lvLista);
         final ArrayList<Entidad> gItems = GetArrayItems();
-        adaptador = new Adaptador(this , gItems , gItems);
+        adaptador = new Adaptador(this , gItems);
         lista.setAdapter(adaptador);
 
         lista.setOnItemClickListener(new AdapterView.OnItemClickListener() {

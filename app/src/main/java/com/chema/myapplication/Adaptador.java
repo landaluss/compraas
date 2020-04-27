@@ -19,7 +19,7 @@ public class Adaptador extends BaseAdapter implements Filterable {
     private ArrayList<Entidad> listItems;
     private ArrayList<Entidad> listFiltered;
 
-    public Adaptador(Context context, ArrayList<Entidad> listItems , ArrayList<Entidad> listFiltered) {
+    public Adaptador(Context context, ArrayList<Entidad> listItems) {
         this.context = context;
         this.listItems = listItems;
         this.listFiltered = listItems;

@@ -2,13 +2,17 @@ package com.chema.myapplication;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.os.SystemClock;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.Switch;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.github.johnpersano.supertoasts.library.Style;
@@ -20,15 +24,38 @@ public class MainActivity extends AppCompatActivity {
     private EditText EtNombre;
     private EditText EtPass;
     private Button login;
+    private CheckBox recordar;
+    private TextView password;
+    private TextView ncuenta;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        EtNombre = (EditText) findViewById(R.id.EtNombre);
-        EtPass = (EditText) findViewById(R.id.EtPass);
-        login = (Button) findViewById(R.id.btnLogin);
+        EtNombre = findViewById(R.id.EtNombre);
+        EtPass = findViewById(R.id.EtPass);
+        login = findViewById(R.id.btnLogin);
+
+        recordar = findViewById(R.id.remember);
+        password = findViewById(R.id.recuperar);
+        ncuenta = findViewById(R.id.btnCuenta);
+
+        password.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent forgot = new Intent(MainActivity.this , ForgotActivity.class);
+                startActivity(forgot);
+            }
+        });
+
+        ncuenta.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent nuevaCuenta = new Intent(MainActivity.this , NuevaCuentaActivity.class);
+                startActivity(nuevaCuenta);
+            }
+        });
 
         login.setOnClickListener(new View.OnClickListener() {
             @Override

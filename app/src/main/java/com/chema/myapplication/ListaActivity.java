@@ -23,6 +23,7 @@ public class ListaActivity extends AppCompatActivity {
 
     private ImageButton del;
     private ImageButton btnShare;
+    private ImageButton btnedit;
     private Bundle b;
 
     @Override
@@ -30,9 +31,9 @@ public class ListaActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_lista);
 
-        TextView nombreCompra = (TextView) findViewById(R.id.tvNombreLista);
-        TextView fecha = (TextView) findViewById(R.id.tvFecha);
-        TextView descripcion = (TextView) findViewById(R.id.tvCompra);
+        TextView nombreCompra = findViewById(R.id.tvNombreLista);
+        TextView fecha = findViewById(R.id.tvFecha);
+        TextView descripcion = findViewById(R.id.tvCompra);
 
         Intent intent = getIntent();
         b = intent.getExtras();
@@ -45,6 +46,7 @@ public class ListaActivity extends AppCompatActivity {
 
         del = (ImageButton) findViewById(R.id.btnDel);
         btnShare = (ImageButton) findViewById(R.id.btnShare);
+        btnedit = findViewById(R.id.btnEdit);
 
         //Al hacer clic en borrar
         del.setOnClickListener(new View.OnClickListener() {
@@ -59,6 +61,17 @@ public class ListaActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 createCustomDialogwassap().show();
+            }
+        });
+
+        //Al hacer click en editar
+        btnedit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent edit = new Intent(ListaActivity.this , EditActivity.class);
+                edit.putExtra("NOM",b.getString("NOM"));
+                edit.putExtra("DESC", b.getString("DESC"));
+                startActivity(edit);
             }
         });
 

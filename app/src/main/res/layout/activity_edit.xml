@@ -6,6 +6,8 @@
     android:layout_height="match_parent"
     android:padding="0dp"
     android:orientation="vertical"
+    android:focusable="true"
+    android:focusableInTouchMode="true"
     tools:context=".PrincipalActivity">
 
     <LinearLayout
@@ -18,11 +20,9 @@
         android:background="#da4958">
 
         <LinearLayout
-            android:layout_width="0dp"
-            android:layout_weight="1"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:gravity="left">
+            android:orientation="horizontal">
 
             <ImageView
                 android:layout_width="wrap_content"
@@ -34,22 +34,6 @@
                 android:layout_height="23dp"
                 android:paddingLeft="7dp"
                 android:src="@drawable/letras_shopping_list"/>
-
-        </LinearLayout>
-        <LinearLayout
-            android:layout_width="0dp"
-            android:layout_weight="1"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:gravity="right">
-
-            <ImageButton
-                android:id="@+id/btnShare"
-                android:paddingLeft="20dp"
-                android:background="#da4958"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/ic_icon_share"/>
 
         </LinearLayout>
 
@@ -65,14 +49,14 @@
         android:background="#933b49">
 
         <TextView
-            android:id="@+id/tvNombreLista"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Nombre Lista de la compra"
+            android:text="Modificar lista de la compra"
             android:layout_gravity="center"
             android:gravity="center"
             android:textColor="#fff"
             android:textSize="25dp"/>
+
 
 
     </LinearLayout>
@@ -97,49 +81,56 @@
 
     </LinearLayout>
 
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/cabecera"
-        android:paddingTop="10dp">
-
     <LinearLayout
         android:id="@+id/datos"
         android:layout_below="@+id/cabecera"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="10dp"
-        android:layout_marginTop="0dp"
-        android:gravity="top"
+        android:layout_marginTop="20dp"
+        android:gravity="center|top"
+        android:padding="10sp"
         android:orientation="vertical">
 
-            <TextView
-                android:id="@+id/tvFecha"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Fecha"
-                android:textStyle="bold"
-                android:textColor="#933b49"/>
+        <EditText
+            android:id="@+id/Etitulo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/rounded"
+            android:hint="Titulo de la lista"
+            android:inputType="text"
+            android:drawablePadding="10dp"
+            android:padding="10dp"
+            android:shadowRadius="20"
+            android:textColor="#933b49"
+            android:textColorHint="#933b49"
+            android:textSize="25dp" />
 
-            <TextView
-                android:id="@+id/tvCompra"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="As is talked about in this post, sometimes you want the ScrollView content to fill the screen. For example, if you had some buttons at the end of a readme. You want the buttons to always be at the end of the text and at bottom of the screen, even if the text doesn't scroll.
 
-If the content scrolls, everything is fine. However, if the content is smaller than the size of the screen, the buttons are not at the bottom.
-As is talked about in this post, sometimes you want the ScrollView content to fill the screen. For example, if you had some buttons at the end of a readme. You want the buttons to always be at the end of the text and at bottom of the screen, even if the text doesn't scroll.
-
-If the content scrolls, everything is fine. However, if the content is smaller than the size of the screen, the buttons are not at the bottom."
-                android:textSize="20dp"
-                android:paddingBottom="60dp"
-                android:textColor="#34393f"/>
+        <EditText
+            android:id="@+id/Ecompra"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/rounded"
+            android:hint="Productos a comprar"
+            android:paddingTop="10dp"
+            android:gravity="left|top"
+            android:layout_marginTop="10dp"
+            android:inputType="textMultiLine"
+            android:lines="8"
+            android:maxLines="10"
+            android:minLines="6"
+            android:scrollbars="vertical"
+            android:drawablePadding="10dp"
+            android:padding="10dp"
+            android:shadowRadius="20"
+            android:textColor="#933b49"
+            android:textColorHint="#933b49"
+            android:textSize="25dp" />
 
     </LinearLayout>
 
-    </ScrollView>
-
     <LinearLayout
+        android:layout_below="@+id/datos"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
@@ -159,21 +150,11 @@ If the content scrolls, everything is fine. However, if the content is smaller t
             android:background="#933b49">
 
             <ImageButton
-                android:id="@+id/btnEdit"
+                android:id="@+id/btnUpdate"
                 android:background="#933b49"
-                android:layout_width="0dp"
-                android:layout_weight="1"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@drawable/ic_icon_edit"/>
-
-            <ImageButton
-                android:id="@+id/btnDel"
-                android:paddingLeft="20dp"
-                android:background="#933b49"
-                android:layout_width="0dp"
-                android:layout_weight="1"
-                android:layout_height="wrap_content"
-                android:src="@drawable/ic_icon_del"/>
+                android:src="@drawable/ic_icon_save"/>
 
         </LinearLayout>
 

@@ -68,7 +68,6 @@
             android:layout_height="wrap_content"
             android:gravity="center"
             android:textColor="#fff"
-            android:text="Cancelar"
             android:padding="10dp"
             android:background="#933b49"
             android:src="@drawable/ic_icon_whatsapp"/>
@@ -79,7 +78,6 @@
             android:layout_height="wrap_content"
             android:gravity="center"
             android:textColor="#fff"
-            android:text="Cancelar"
             android:padding="10dp"
             android:background="#34393f"
             android:src="@drawable/ic_icon_email_share"/>

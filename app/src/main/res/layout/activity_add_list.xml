@@ -6,6 +6,8 @@
     android:layout_height="match_parent"
     android:padding="0dp"
     android:orientation="vertical"
+    android:focusable="true"
+    android:focusableInTouchMode="true"
     tools:context=".PrincipalActivity">
 
     <LinearLayout
@@ -95,7 +97,6 @@
             android:layout_height="wrap_content"
             android:background="@drawable/rounded"
             android:hint="Titulo de la lista"
-            android:focusable="true"
             android:inputType="text"
             android:drawablePadding="10dp"
             android:padding="10dp"
@@ -107,7 +108,6 @@
 
         <EditText
             android:id="@+id/Ecompra"
-            android:focusable="true"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/rounded"
