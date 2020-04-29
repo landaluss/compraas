@@ -33,6 +33,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.chema.myapplication.Clases.SinglentonVolley;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -49,6 +50,8 @@ public class PrincipalActivity extends AppCompatActivity {
     private ImageButton add;
     private ImageButton logut;
     private EditText search;
+    private SharedPreferences prefs;
+    private String id;
 
     private ListView lista;
     private Adaptador adaptador;
@@ -62,6 +65,9 @@ public class PrincipalActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_principal);
+
+        prefs = getSharedPreferences("Preferences" , Context.MODE_PRIVATE);
+        id = prefs.getString("id", null);
 
         mContext = this.getApplicationContext();
         volley = SinglentonVolley.getInstance(this);
@@ -135,12 +141,23 @@ public class PrincipalActivity extends AppCompatActivity {
             }
         });
 
+        JSONObject post = new JSONObject();
+        JSONObject usuario = new JSONObject();
 
+        try {
+            usuario.put("idUser", id);
+            post.put("usuario",usuario);
+            postRequestLogin(post);
+
+        } catch (JSONException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
     }
 
     private void postRequestLogin(JSONObject data) {
         fRequestQueue = volley.getRequestQueue();
-        String url = "https://compras.informehoras.es/auth.php";
+        String url = "https://compras.informehoras.es/list.php";
 
         JsonObjectRequest jsonRequestLogin=new JsonObjectRequest(Request.Method.POST, url, data,
                 new Response.Listener<JSONObject>() {
@@ -150,9 +167,14 @@ public class PrincipalActivity extends AppCompatActivity {
 
                             if (Boolean.valueOf(response.getString("Autenticacion"))){
 
-                                ArrayList<Entidad> listItems = new ArrayList<>();
-                                response.getString("datos");
+                                JSONArray r = response.getJSONArray("listas");
 
+                                for (int i = 0; i <= r.length(); i++) {
+                                    JSONObject listas = r.getJSONObject(i);
+                                    Toast.makeText(PrincipalActivity.this, "fecha: " + listas.getString("fecha") +
+                                            " / titulo: " + listas.getString("titulo") +
+                                            " / compra: " + listas.getString("compra"), Toast.LENGTH_SHORT).show();
+                                }
                             }
                         } catch (JSONException e) {
                             e.printStackTrace();
