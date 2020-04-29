@@ -55,7 +55,7 @@ public class NuevaCuentaActivity extends AppCompatActivity {
                 EtNombre = findViewById(R.id.EtNombre);
                 EtApellidos = findViewById(R.id.EtAApellidos);
                 EtCorreo = findViewById(R.id.EtCorreo);
-                EtUsername = findViewById(R.id.EtCorreo);
+                EtUsername = findViewById(R.id.EtUsername);
                 EtPassword = findViewById(R.id.EtPassword);
 
                 if(EtNombre.getText().toString().isEmpty() || EtApellidos.getText().toString().isEmpty() || EtCorreo.getText().toString().isEmpty()
@@ -80,7 +80,7 @@ public class NuevaCuentaActivity extends AppCompatActivity {
                             e.printStackTrace();
                         }
 
-                        Toast.makeText(NuevaCuentaActivity.this, "Registro terminado con éxito", Toast.LENGTH_SHORT).show();
+                        //Toast.makeText(NuevaCuentaActivity.this, "Registro terminado con éxito", Toast.LENGTH_SHORT).show();
 
                     } else {
                         Toast.makeText(NuevaCuentaActivity.this, "Dirección de correo no válida, revísala e intentalo de nuevo", Toast.LENGTH_SHORT).show();
@@ -120,7 +120,16 @@ public class NuevaCuentaActivity extends AppCompatActivity {
                                 intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                                 startActivity(intent);*/
 
-                                Toast.makeText(NuevaCuentaActivity.this, "Parece que todo se hizo bien", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(NuevaCuentaActivity.this, response.getString("MSG"), Toast.LENGTH_SHORT).show();
+
+                                Intent login = new Intent(NuevaCuentaActivity.this, MainActivity.class);
+                                login.putExtra("NOM", EtUsername.getText().toString());
+                                login.putExtra("PASS", EtPassword.getText().toString());
+                                login.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                                startActivity(login);
+
+                            } else {
+                                Toast.makeText(NuevaCuentaActivity.this, response.getString("MSG"), Toast.LENGTH_SHORT).show();
                             }
                         } catch (JSONException e) {
                             e.printStackTrace();

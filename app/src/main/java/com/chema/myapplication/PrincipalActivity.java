@@ -5,10 +5,13 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
@@ -17,6 +20,23 @@ import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import com.android.volley.AuthFailureError;
+import com.android.volley.NetworkError;
+import com.android.volley.NoConnectionError;
+import com.android.volley.ParseError;
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.ServerError;
+import com.android.volley.TimeoutError;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
+import com.chema.myapplication.Clases.SinglentonVolley;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.UnsupportedEncodingException;
 import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -27,17 +47,25 @@ import java.util.ListIterator;
 public class PrincipalActivity extends AppCompatActivity {
 
     private ImageButton add;
+    private ImageButton logut;
     private EditText search;
 
     private ListView lista;
     private Adaptador adaptador;
     private Entidad entidad;
 
+    private Context mContext;
+    private RequestQueue fRequestQueue;
+    private SinglentonVolley volley;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_principal);
+
+        mContext = this.getApplicationContext();
+        volley = SinglentonVolley.getInstance(this);
+        fRequestQueue = volley.getRequestQueue();
 
         search = findViewById(R.id.EtNombre);
 
@@ -96,6 +124,77 @@ public class PrincipalActivity extends AppCompatActivity {
             }
         });
 
+        logut = findViewById(R.id.btnLogOut);
+        logut.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Intent intent = new Intent(PrincipalActivity.this , MainActivity.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                startActivity(intent);
+            }
+        });
+
+
+    }
+
+    private void postRequestLogin(JSONObject data) {
+        fRequestQueue = volley.getRequestQueue();
+        String url = "https://compras.informehoras.es/auth.php";
+
+        JsonObjectRequest jsonRequestLogin=new JsonObjectRequest(Request.Method.POST, url, data,
+                new Response.Listener<JSONObject>() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        try {
+
+                            if (Boolean.valueOf(response.getString("Autenticacion"))){
+
+                                ArrayList<Entidad> listItems = new ArrayList<>();
+                                response.getString("datos");
+
+                            }
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+
+                // Handle error
+                Log.v("RESPUESTAERROR", error.toString());
+
+                if (error instanceof TimeoutError) {
+                    //Toast.makeText(mContext,mContext.getString(R.string.error_network_timeout),Toast.LENGTH_LONG).show();
+                    Toast.makeText(mContext, "Timeout error...", Toast.LENGTH_LONG).show();
+                }else if(error instanceof NoConnectionError){
+                    //Toast.makeText(mContext,mContext.getString(R.string.error_network_timeout),Toast.LENGTH_LONG).show();
+                    Toast.makeText(mContext, "No connection...", Toast.LENGTH_LONG).show();
+
+                } else if (error instanceof AuthFailureError) {
+                    try {
+                        Toast.makeText(mContext, "Login incorrecto...", Toast.LENGTH_LONG).show();
+                        Log.v("RESPUESTAERRORATH", new String(error.networkResponse.data, "UTF-8"));
+                        onStart();
+                    } catch (UnsupportedEncodingException e) {
+                        e.printStackTrace();
+                    }
+                    //TODO
+                } else if (error instanceof ServerError) {
+                    //TODO
+                    Log.v("RESPUESTAERROR.ServerE", ".");
+                } else if (error instanceof NetworkError) {
+                    Log.v("RESPUESTAERROR.NetworkE", ".");
+                    //TODO
+                } else if (error instanceof ParseError) {
+                    //TODO
+                    Log.v("RESPUESTAERROR", "ParseError");
+                }
+            }
+        });
+        fRequestQueue.add(jsonRequestLogin);
+
     }
 
     private ArrayList<Entidad> GetArrayItems(){
@@ -104,7 +203,6 @@ public class PrincipalActivity extends AppCompatActivity {
         listItems.add(new Entidad("10/03/2016" , "Compra de febrero" , "If the content scrolls, everything is fine. However, if the content is smaller than the size of the screen, the buttons are not at the bottom."));
         listItems.add(new Entidad("10/03/2017" , "Compra de marzo" , "If the content scrolls, everything is fine. However, if the content is smaller than the size of the screen, the buttons are not at the bottom."));
         listItems.add(new Entidad("10/03/2018" , "Compra de abril" , "If the content scrolls, everything is fine. However, if the content is smaller than the size of the screen, the buttons are not at the bottom."));
-
         return listItems;
     }
 

@@ -20,9 +20,11 @@
         android:background="#da4958">
 
         <LinearLayout
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
+            android:layout_weight="1"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:gravity="left">
 
             <ImageView
                 android:layout_width="wrap_content"
@@ -34,6 +36,30 @@
                 android:layout_height="23dp"
                 android:paddingLeft="7dp"
                 android:src="@drawable/letras_shopping_list"/>
+
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="right">
+
+            <ImageButton
+                android:id="@+id/btnCuenta"
+                android:paddingLeft="20dp"
+                android:background="#da4958"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_icon_cuenta"/>
+
+            <ImageButton
+                android:id="@+id/btnLogOut"
+                android:paddingLeft="20dp"
+                android:background="#da4958"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_icon_logout"/>
 
         </LinearLayout>
 
@@ -64,6 +90,7 @@
             android:textSize="15dp" />
 
     </LinearLayout>
+
 
     <LinearLayout
         android:id="@+id/titulo"
