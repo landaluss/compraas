@@ -57,6 +57,8 @@ public class PrincipalActivity extends AppCompatActivity {
     private ListView lista;
     private Adaptador adaptador;
     private Entidad entidad;
+    private ArrayList<Entidad> gItems;
+
 
     private Context mContext;
     private RequestQueue fRequestQueue;
@@ -104,7 +106,7 @@ public class PrincipalActivity extends AppCompatActivity {
         });
 
         lista = findViewById(R.id.lvLista);
-        final ArrayList<Entidad> gItems = GetArrayItems();
+        gItems = new ArrayList<>();//GetArrayItems();
         adaptador = new Adaptador(this , gItems);
         lista.setAdapter(adaptador);
 
@@ -170,12 +172,15 @@ public class PrincipalActivity extends AppCompatActivity {
 
                                 JSONArray r = response.getJSONArray("listas");
 
-                                for (int i = 0; i <= r.length(); i++) {
+
+                                /*for (int i = 0; i <= r.length(); i++) {
                                     JSONObject listas = r.getJSONObject(i);
                                     Toast.makeText(PrincipalActivity.this, "fecha: " + listas.getString("fecha") +
                                             " / titulo: " + listas.getString("titulo") +
                                             " / compra: " + listas.getString("compra"), Toast.LENGTH_SHORT).show();
-                                }
+                                }*/
+                                mostrarLista(response.getJSONArray("listas"));
+
                             }
                         } catch (JSONException e) {
                             e.printStackTrace();
@@ -222,6 +227,19 @@ public class PrincipalActivity extends AppCompatActivity {
                 DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
         fRequestQueue.add(jsonRequestLogin);
 
+    }
+
+    private void mostrarLista(JSONArray listas) throws JSONException {
+        final ArrayList<Entidad> listItems = new ArrayList<>();
+        JSONObject list;
+        for (int i = 0; i < listas.length(); i++) {
+            list = listas.getJSONObject(i);
+            listItems.add(new Entidad(list.getString("fecha"),list.getString("titulo"),list.getString("compra")));
+        }
+        gItems = listItems;
+        lista = findViewById(R.id.lvLista);
+        adaptador = new Adaptador(mContext , listItems);
+        lista.setAdapter(adaptador);
     }
 
     private ArrayList<Entidad> GetArrayItems(){
