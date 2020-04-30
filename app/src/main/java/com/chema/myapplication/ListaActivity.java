@@ -69,6 +69,7 @@ public class ListaActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent edit = new Intent(ListaActivity.this , EditActivity.class);
+                edit.putExtra("ID",b.getString("ID"));
                 edit.putExtra("NOM",b.getString("NOM"));
                 edit.putExtra("DESC", b.getString("DESC"));
                 startActivity(edit);
@@ -83,19 +84,19 @@ public class ListaActivity extends AppCompatActivity {
         LayoutInflater inflater = getLayoutInflater();
 
         View v = inflater.inflate(R.layout.dialog_signin, null);
-        Button btnFire = (Button) v.findViewById(R.id.AlertDialog_Negativo);
-        Button btnCancel = (Button) v.findViewById(R.id.AlertDialog_Positivo);
+        Button btnCancel = (Button) v.findViewById(R.id.AlertDialog_Negativo);
+        Button btnTrue = (Button) v.findViewById(R.id.AlertDialog_Positivo);
         builder.setView(v);
         alertDialog = builder.create();
 
-        btnFire.setOnClickListener(new View.OnClickListener() {
+        btnCancel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 alertDialog.dismiss();
             }
         });
 
-        btnCancel.setOnClickListener(new View.OnClickListener() {
+        btnTrue.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Toast.makeText(ListaActivity.this, "Borrar lista de la compra", Toast.LENGTH_SHORT).show();

@@ -4,7 +4,6 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.util.Patterns;
@@ -13,7 +12,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.android.volley.AuthFailureError;
+import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.NetworkError;
 import com.android.volley.NoConnectionError;
 import com.android.volley.ParseError;
@@ -28,8 +27,6 @@ import com.chema.myapplication.Clases.SinglentonVolley;
 
 import org.json.JSONException;
 import org.json.JSONObject;
-
-import java.io.UnsupportedEncodingException;
 
 
 public class NuevaCuentaActivity extends AppCompatActivity {
@@ -48,7 +45,7 @@ public class NuevaCuentaActivity extends AppCompatActivity {
         volley = SinglentonVolley.getInstance(this);
         fRequestQueue = volley.getRequestQueue();
 
-        Button btnNcuenta = (Button) findViewById(R.id.btnNcuenta);
+        Button btnNcuenta = (Button) findViewById(R.id.btnForgot);
         btnNcuenta.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -161,6 +158,10 @@ public class NuevaCuentaActivity extends AppCompatActivity {
                 }
             }
         });
+        jsonRequestLogin.setRetryPolicy(new DefaultRetryPolicy(
+                DefaultRetryPolicy.DEFAULT_TIMEOUT_MS * 5,
+                DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
+                DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
         fRequestQueue.add(jsonRequestLogin);
 
     }
