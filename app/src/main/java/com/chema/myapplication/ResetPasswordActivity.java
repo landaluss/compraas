@@ -7,11 +7,9 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
-import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.volley.AuthFailureError;
@@ -33,13 +31,13 @@ import org.json.JSONObject;
 
 import java.io.UnsupportedEncodingException;
 
-public class DetaisAccountActivity extends AppCompatActivity {
+public class ResetPasswordActivity extends AppCompatActivity {
 
     private SharedPreferences prefs;
-    private EditText nombre, apellidos, correo, username;
-    private TextView changePass;
-    private Button btnSave;
+    private EditText pass , rpass;
+    private Button resetPassword;
     private String id;
+    private Boolean rememberPrefs;
 
     private Context mContext;
     private RequestQueue fRequestQueue;
@@ -48,54 +46,36 @@ public class DetaisAccountActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_detais_account);
+        setContentView(R.layout.activity_reset_password);
 
         mContext = this.getApplicationContext();
         volley = SinglentonVolley.getInstance(this);
         fRequestQueue = volley.getRequestQueue();
 
-        nombre = findViewById(R.id.EtNombre);
-        apellidos = findViewById(R.id.EtApellidos);
-        correo = findViewById(R.id.EtCorreo);
-        username = findViewById(R.id.EtUsername);
+        pass = findViewById(R.id.EtResetPass);
+        rpass = findViewById(R.id.EtRepeatResetPass);
 
         prefs = getSharedPreferences("Preferences" , Context.MODE_PRIVATE);
         id = prefs.getString("id" , null);
 
-        nombre.setText(prefs.getString("nombre" , null));
-        apellidos.setText(prefs.getString("apellidos" , null));
-        correo.setText(prefs.getString("correo" , null));
-        username.setText(prefs.getString("nombre_login" , null));
-
-        changePass = findViewById(R.id.tvChangePass);
-
-        btnSave = findViewById(R.id.btnSaveChanges);
-
-        //Save action button
-        btnSave.setOnClickListener(new View.OnClickListener() {
+        //reset password action button
+        resetPassword = findViewById(R.id.btnResetPassword);
+        resetPassword.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-                if(nombre.getText().toString().isEmpty() ||
-                        apellidos.getText().toString().isEmpty() ||
-                        correo.getText().toString().isEmpty() ||
-                        username.getText().toString().isEmpty()) {
+                if(pass.getText().toString().isEmpty() || rpass.getText().toString().isEmpty()){
+                    Toast.makeText(ResetPasswordActivity.this, "Todos los campos son obligatorios", Toast.LENGTH_SHORT).show();
+                } else{
 
-                    Toast.makeText(DetaisAccountActivity.this, "Todos los campos son obligatorios", Toast.LENGTH_SHORT).show();
-
-                } else {
-
-                    if(Patterns.EMAIL_ADDRESS.matcher(correo.getText().toString()).matches() && correo.length() > 0){
+                    if(pass.getText().toString().equals(rpass.getText().toString())){
 
                         JSONObject post = new JSONObject();
                         JSONObject usuario = new JSONObject();
 
                         try {
                             usuario.put("id", id);
-                            usuario.put("nombre", nombre.getText().toString());
-                            usuario.put("apellidos", apellidos.getText().toString());
-                            usuario.put("correo", correo.getText().toString());
-                            usuario.put("username", username.getText().toString());
+                            usuario.put("clave", pass.getText().toString());
                             post.put("usuario",usuario);
                             postRequestLogin(post);
 
@@ -104,12 +84,9 @@ public class DetaisAccountActivity extends AppCompatActivity {
                             e.printStackTrace();
                         }
 
-                        //Toast.makeText(DetaisAccountActivity.this, "Actualiza", Toast.LENGTH_SHORT).show();
-
-                    } else {
-
-                        Toast.makeText(DetaisAccountActivity.this, "Debe de indicar una dirección de correo válida", Toast.LENGTH_SHORT).show();
-
+                        Toast.makeText(ResetPasswordActivity.this, "Guardando contraseña, por favor espere...", Toast.LENGTH_SHORT).show();
+                    } else{
+                        Toast.makeText(ResetPasswordActivity.this, "Las contraseñas no coinciden", Toast.LENGTH_SHORT).show();
                     }
 
                 }
@@ -117,20 +94,11 @@ public class DetaisAccountActivity extends AppCompatActivity {
             }
         });
 
-        //ChangePass action button
-        changePass.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent resetPass = new Intent(DetaisAccountActivity.this , ResetPasswordActivity.class);
-                startActivity(resetPass);
-            }
-        });
-
     }
 
     private void postRequestLogin(JSONObject data) {
         fRequestQueue = volley.getRequestQueue();
-        String url = "https://compras.informehoras.es/saveAccount.php";
+        String url = "https://compras.informehoras.es/resetPassword.php";
 
         JsonObjectRequest jsonRequestLogin=new JsonObjectRequest(Request.Method.POST, url, data,
                 new Response.Listener<JSONObject>() {
@@ -140,22 +108,19 @@ public class DetaisAccountActivity extends AppCompatActivity {
 
                             if (Boolean.valueOf(response.getString("Autenticacion"))){
 
-                                Toast.makeText(DetaisAccountActivity.this, response.getString("MSG"), Toast.LENGTH_LONG).show();
-
                                 SharedPreferences.Editor editor = prefs.edit();
-                                editor.putString("correo" , correo.getText().toString());
-                                editor.putString("nombre_login" , username.getText().toString());
-                                editor.putString("nombre" , nombre.getText().toString());
-                                editor.putString("apellidos" , apellidos.getText().toString());
-                                editor.commit(); //sincrono
-                                editor.apply();     //asincrono
+                                editor.clear();
+                                editor.commit();
+                                editor.apply();
 
-                                Intent login = new Intent(DetaisAccountActivity.this, PrincipalActivity.class);
+                                Toast.makeText(ResetPasswordActivity.this, response.getString("MSG"), Toast.LENGTH_LONG).show();
+
+                                Intent login = new Intent(ResetPasswordActivity.this, MainActivity.class);
                                 login.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                                 startActivity(login);
 
                             } else {
-                                Toast.makeText(DetaisAccountActivity.this, response.getString("MSG"), Toast.LENGTH_SHORT).show();
+                                Toast.makeText(ResetPasswordActivity.this, response.getString("MSG"), Toast.LENGTH_SHORT).show();
                             }
                         } catch (JSONException e) {
                             e.printStackTrace();

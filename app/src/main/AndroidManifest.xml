@@ -15,7 +15,8 @@
         android:roundIcon="@mipmap/ic_launcher_logo"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar">
-        <activity android:name=".DetaisAccountActivity"></activity>
+        <activity android:name=".ResetPasswordActivity"></activity>
+        <activity android:name=".DetaisAccountActivity" />
         <activity android:name=".ForgotActivity" />
         <activity android:name=".NuevaCuentaActivity" />
         <activity android:name=".EditActivity" />

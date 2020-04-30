@@ -50,6 +50,7 @@ public class PrincipalActivity extends AppCompatActivity {
 
     private ImageButton add;
     private ImageButton logut;
+    private ImageButton btnCuenta;
     private EditText search;
     private SharedPreferences prefs;
     private String id;
@@ -142,6 +143,16 @@ public class PrincipalActivity extends AppCompatActivity {
                 Intent intent = new Intent(PrincipalActivity.this , MainActivity.class);
                 intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                 startActivity(intent);
+            }
+        });
+
+        //details account button
+        btnCuenta = findViewById(R.id.btnCuenta);
+        btnCuenta.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent account = new Intent(PrincipalActivity.this , DetaisAccountActivity.class);
+                startActivity(account);
             }
         });
 
