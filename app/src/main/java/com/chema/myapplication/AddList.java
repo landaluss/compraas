@@ -37,6 +37,8 @@ public class AddList extends AppCompatActivity {
     private EditText compra;
     private ImageButton save;
     private String id;
+    private ImageButton logut;
+    private ImageButton btnCuenta;
 
     private Context mContext;
     private RequestQueue fRequestQueue;
@@ -85,6 +87,33 @@ public class AddList extends AppCompatActivity {
                     }
 
                 }
+            }
+        });
+
+        //log aou button
+        logut = findViewById(R.id.btnLogOut);
+        logut.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                SharedPreferences.Editor editor = prefs.edit();
+                editor.putBoolean("sesion" , false);
+                editor.commit(); //sincrono
+                editor.apply();     //asincrono
+
+                Intent intent = new Intent(AddList.this , MainActivity.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                startActivity(intent);
+            }
+        });
+
+        //details account button
+        btnCuenta = findViewById(R.id.btnCuenta);
+        btnCuenta.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent account = new Intent(AddList.this , DetaisAccountActivity.class);
+                startActivity(account);
             }
         });
 

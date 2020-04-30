@@ -148,6 +148,7 @@ public class MainActivity extends AppCompatActivity {
                                 editor.putString("clave" , EtPass.getText().toString());
                                 editor.putString("nombre_login" , EtNombre.getText().toString());
                                 editor.putString("nombre" , response.getString("nombre"));
+                                editor.putBoolean("sesion" , true);
                                 editor.putString("apellidos" , response.getString("apellidos"));
                                 editor.putString("id" , response.getString("id"));
                                 editor.putBoolean("remember" , switchremember.isChecked());

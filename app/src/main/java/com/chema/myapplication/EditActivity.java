@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -34,8 +35,11 @@ import java.io.UnsupportedEncodingException;
 
 public class EditActivity extends AppCompatActivity {
 
+    private SharedPreferences prefs;
     private Bundle b;
     private ImageButton btneUpdate;
+    private ImageButton logut;
+    private ImageButton btnCuenta;
 
     private Context mContext;
     private RequestQueue fRequestQueue;
@@ -45,6 +49,8 @@ public class EditActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit);
+
+        prefs = getSharedPreferences("Preferences" , Context.MODE_PRIVATE);
 
         mContext = this.getApplicationContext();
         volley = SinglentonVolley.getInstance(this);
@@ -90,6 +96,33 @@ public class EditActivity extends AppCompatActivity {
                     }
                 }
 
+            }
+        });
+
+        //log aou button
+        logut = findViewById(R.id.btnLogOut);
+        logut.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                SharedPreferences.Editor editor = prefs.edit();
+                editor.putBoolean("sesion" , false);
+                editor.commit(); //sincrono
+                editor.apply();     //asincrono
+
+                Intent intent = new Intent(EditActivity.this , MainActivity.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                startActivity(intent);
+            }
+        });
+
+        //details account button
+        btnCuenta = findViewById(R.id.btnCuenta);
+        btnCuenta.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent account = new Intent(EditActivity.this , DetaisAccountActivity.class);
+                startActivity(account);
             }
         });
 

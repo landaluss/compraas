@@ -135,10 +135,16 @@ public class PrincipalActivity extends AppCompatActivity {
             }
         });
 
+        //log out button
         logut = findViewById(R.id.btnLogOut);
         logut.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+                SharedPreferences.Editor editor = prefs.edit();
+                editor.putBoolean("sesion" , false);
+                editor.commit(); //sincrono
+                editor.apply();     //asincrono
 
                 Intent intent = new Intent(PrincipalActivity.this , MainActivity.class);
                 intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
